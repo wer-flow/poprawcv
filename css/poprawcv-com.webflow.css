@@ -5817,4 +5817,21 @@ blockquote {
   }
 }
 
+.captcha-wrapper {
+  margin: 1rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.g-recaptcha {
+  transform: scale(0.85);
+  transform-origin: 0 0;
+}
+
+@media screen and (max-width: 479px) {
+  .g-recaptcha {
+    transform: scale(0.75);
+  }
+}
+
 

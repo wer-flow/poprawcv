@@ -25,7 +25,48 @@
   <link href="images/webclip.svg" rel="apple-touch-icon">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-7ZSCX9ZQNN"></script>
   <script type="text/javascript">window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('set', 'developer_id.dZGVlNj', true);gtag('config', 'G-7ZSCX9ZQNN');</script>
-  <script src="https://www.google.com/recaptcha/api.js" type="text/javascript"></script><!--  Finsweet Cookie Consent  -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('wf-form-Contact-1-Form');
+      const successMessage = document.querySelector('.success-message');
+      const errorMessage = document.querySelector('.error-message');
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Check if reCAPTCHA is filled
+        const response = grecaptcha.getResponse();
+        if (!response) {
+          errorMessage.style.display = 'block';
+          errorMessage.textContent = 'Proszę potwierdzić, że nie jesteś robotem.';
+          return;
+        }
+
+        // Submit the form
+        const formData = new FormData(form);
+        fetch('/', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => {
+          if (response.ok) {
+            form.style.display = 'none';
+            successMessage.style.display = 'block';
+            grecaptcha.reset();
+          } else {
+            throw new Error('Network response was not ok');
+          }
+        })
+        .catch(error => {
+          errorMessage.style.display = 'block';
+          errorMessage.textContent = 'Przepraszamy, wystąpił błąd podczas wysyłania wiadomości. Spróbuj ponownie później.';
+          grecaptcha.reset();
+        });
+      });
+    });
+  </script>
+  <!--  Finsweet Cookie Consent  -->
   <script async="" src="https://cdn.jsdelivr.net/npm/@finsweet/cookie-consent@1/fs-cc.js" fs-cc-mode="informational"></script>
 </head>
 <body>
@@ -245,8 +286,8 @@
                     <label for="Contact-1-Message-3" class="field-label_white">Treść wiadomości</label>
                     <textarea placeholder=" " maxlength="5000" id="Contact-1-Message-3" name="message" data-name="Contact 1 Message" required="" class="rl-form-text-area w-input"></textarea>
                   </div>
-                  <div id="w-node-_2019335f-ae45-4049-fa19-06784be2416c-44bf1d43" class="captcha-wrapper">
-                    <div data-sitekey="6LfCrM0qAAAAAPclIg2V3UPHC9SPT7PWXf9abVkL" class="w-form-formrecaptcha g-recaptcha g-recaptcha-error g-recaptcha-disabled"></div>
+                  <div class="captcha-wrapper">
+                    <div class="g-recaptcha" data-sitekey="6LfCrM0qAAAAAPclIg2V3UPHC9SPT7PWXf9abVkL"></div>
                   </div>
                   <div class="button-group-left">
                     <input type="submit" data-wait="Proszę czekaj..." class="button-secondary w-button" value="Wyślij wiadomość">
