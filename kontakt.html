@@ -45,9 +45,14 @@
 
         // Submit the form
         const formData = new FormData(form);
-        fetch('/', {
+        formData.append('g-recaptcha-response', response);
+        
+        fetch(form.action, {
           method: 'POST',
-          body: formData
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
         })
         .then(response => {
           if (response.ok) {
