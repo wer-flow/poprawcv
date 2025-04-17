@@ -47,7 +47,8 @@
         const formData = new FormData(form);
         formData.append('g-recaptcha-response', response);
         
-        fetch(form.action, {
+        // Use the form's action URL with the correct endpoint
+        fetch('/', {
           method: 'POST',
           body: formData,
           headers: {
@@ -55,15 +56,21 @@
           }
         })
         .then(response => {
-          if (response.ok) {
-            form.style.display = 'none';
-            successMessage.style.display = 'block';
-            grecaptcha.reset();
-          } else {
-            throw new Error('Network response was not ok');
+          if (!response.ok) {
+            return response.json().then(err => {
+              throw new Error(err.message || 'Network response was not ok');
+            });
           }
+          return response.json();
+        })
+        .then(data => {
+          console.log('Form submission successful:', data);
+          form.style.display = 'none';
+          successMessage.style.display = 'block';
+          grecaptcha.reset();
         })
         .catch(error => {
+          console.error('Form submission error:', error);
           errorMessage.style.display = 'block';
           errorMessage.textContent = 'Przepraszamy, wystąpił błąd podczas wysyłania wiadomości. Spróbuj ponownie później.';
           grecaptcha.reset();
