@@ -314,9 +314,31 @@
                     <label>Message: <textarea name="message"></textarea></label>
                   </p>
                   <p>
-                    <button type="submit2">Send</button>
+                    <button type="submit">Send</button>
                   </p>
                 </form>
+
+                <form name="contact2" method="POST" data-netlify="true">
+                  <p>
+                    <label>Your Name: <input type="text" name="name" /></label>
+                  </p>
+                  <p>
+                    <label>Your Email: <input type="email" name="email" /></label>
+                  </p>
+                  <p>
+                    <label>Your Role: <select name="role[]" multiple>
+                      <option value="leader">Leader</option>
+                      <option value="follower">Follower</option>
+                    </select></label>
+                  </p>
+                  <p>
+                    <label>Message: <textarea name="message"></textarea></label>
+                  </p>
+                  <p>
+                    <button type="submit">Send</button>
+                  </p>
+                </form>
+                
                 
                 <div class="success-message w-form-done" style="display: none;">
                   <div>Dziękujemy! Twoja wiadomość została wysłana pomyślnie.</div>
@@ -395,7 +417,6 @@
     };
     
     document.querySelector("form").addEventListener("submit", handleSubmit);
-    document.querySelector("form").addEventListener("submit2", handleSubmit);
     
     
   </script>
