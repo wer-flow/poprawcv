@@ -274,6 +274,7 @@
               <div class="spacing-block-2rem"></div>
               <div data-w-id="fd2f2bcd-b1b7-a337-3583-1e308cdd5a29" style="opacity:0;-webkit-transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="contact_form-block w-form">
                 <form id="wf-form-Contact-1-Form" name="wf-form-Contact-1-Form" data-name="Contact 1 Form" method="POST" class="contact-form" netlify>
+                  <input type="hidden" name="wf-form-Contact-1-Form" value="contact" />
                   <div class="contact-form-field-wrapper">
                     <label for="Contact-1-Name-3" class="field-label_white">Imię i nazwisko</label>
                     <input class="form-input w-input" maxlength="256" name="name" data-name="Contact 1 Name" placeholder="" type="text" id="Contact-1-Name-3" required="">
@@ -291,9 +292,32 @@
                   </div>
                   <div class="button-group-left">
                     <input type="submit" data-wait="Proszę czekaj..." class="button-secondary w-button" value="Wyślij wiadomość">
-                    <input type="hidden" name="form-name" value="contact" />
                   </div>
                 </form>
+
+                <form name="contact" method="POST" netlify>
+                  <input type="hidden" name="contact" value="contact" />
+
+                  <p>
+                    <label>Your Name: <input type="text" name="name" /></label>
+                  </p>
+                  <p>
+                    <label>Your Email: <input type="email" name="email" /></label>
+                  </p>
+                  <p>
+                    <label>Your Role: <select name="role[]" multiple>
+                      <option value="leader">Leader</option>
+                      <option value="follower">Follower</option>
+                    </select></label>
+                  </p>
+                  <p>
+                    <label>Message: <textarea name="message"></textarea></label>
+                  </p>
+                  <p>
+                    <button type="submit">Send</button>
+                  </p>
+                </form>
+                
                 <div class="success-message w-form-done" style="display: none;">
                   <div>Dziękujemy! Twoja wiadomość została wysłana pomyślnie.</div>
                 </div>
