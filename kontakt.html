@@ -291,6 +291,7 @@
                   </div>
                   <div class="button-group-left">
                     <input type="submit" data-wait="Proszę czekaj..." class="button-secondary w-button" value="Wyślij wiadomość">
+                    <input type="hidden" name="form-name" value="contact" />
                   </div>
                 </form>
                 <div class="success-message w-form-done" style="display: none;">
@@ -358,6 +359,7 @@
     
       const myForm = event.target;
       const formData = new FormData(myForm);
+      console.log(formData);
     
       fetch("/", {
         method: "POST",
